@@ -1,2 +1,5 @@
 # national_social_protection_crawl
 全国政府网站社会保障列表链接采集
+
+1.爬取各大政府网站公开的社会保障数据
+2.拿到详情链接后，调用crawl4ai进行详情页采集
