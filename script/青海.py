@@ -71,11 +71,11 @@ def get_data() -> list:
         for task in data['custom']['tasklist']:
             for item in task['categoryLittleTask']:
                 taskcode = item['taskcode']
+                title = item['taskname']
                 url = f'https://www.qhzwfw.gov.cn/matterbszndetail.html?taskcode={taskcode}'
-                urls.append(url)
+                urls.append({"url": url, "title": title})
                 print(url)
     return urls
-
 
 
 chromium_options = ChromiumOptions()

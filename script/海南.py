@@ -71,7 +71,8 @@ def get_url(topicid, deptid) -> list:
     urls = []
     for item in page.response.json()['data']['resultList']:
         url = f'https://wssp.hainan.gov.cn/hnwt/handlingGuideline?id={item["id"]}&sourcekey={item["sourcekey"]}&rowguid={item["rowguid"]}'
-        urls.append(url)
+        title = item['taskname']
+        urls.append({"url": url, "title": title})
     return urls
 
 

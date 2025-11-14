@@ -27,7 +27,7 @@ response = session.get(url, headers=headers, data=payload, params=params)
 result = []
 for row in response.json()['rows']:
     url = f'https://zwykb.cq.gov.cn/v2/grbs/bszn.html?catalogId={row["catalogId"]}&transactCode='
-    result.append(url)
+    title = row['itemTitle']
+    result.append({"url": url, "title": title})
 
 print(result)
-

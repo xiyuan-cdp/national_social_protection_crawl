@@ -35,11 +35,11 @@ def get_data(pageno: str, urls: list):
     page.get('https://www.jxzwfww.gov.cn/jxzw/grbs/gotoRight.do', headers=headers, params=params,
              cookies=cookies)
     for tab in page.eles('.bsznbut'):
+        title = tab.parent().ele('@title').text
         id = tab.attr('onclick')[9:30]
         url = f'https://www.jxzwfww.gov.cn/jxzw/bszn/index.do?itemCode={id}&webId=1'
-        urls.append(url)
+        urls.append({"url": url, "title": title})
         print(url)
-
 
 
 result = []

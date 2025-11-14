@@ -57,7 +57,8 @@ def get_data(pageNo):
     urls = []
     for matter in matterList:
         url = f'https://www.zwfw.hlj.gov.cn/zhcx/bszn?syncItemId={matter['syncItemId']}&areaCode=230000000000'
-        urls.append(url)
+        title = matter['itemName']
+        urls.append({"url": url, "title": title})
         print(url)
     return urls
 
@@ -71,7 +72,6 @@ def get_list():
             break
     print(urls)
     return urls
-
 
 
 result = get_list()

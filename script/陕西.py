@@ -2,6 +2,8 @@ import json
 from time import sleep
 import random
 import string
+
+import tls_client
 from DrissionPage._base.chromium import Chromium
 from DrissionPage._configs.chromium_options import ChromiumOptions
 
@@ -70,16 +72,18 @@ def get_data() -> list:
             }
             return addUrlAuth("https://zwfwzx.baoji.gov.cn/icity/api-v2/shanxi.app.icity.govservice.GovProjectCmd/getInitList")
         """)
-        response = requests.post(
+        session = tls_client.Session(client_identifier="chrome_120", random_tls_extension_order=False)
+
+        response = session.post(
             url,
             headers=headers,
             cookies=cookies, data=json.dumps({'data': data}))
         urls = []
         for item in response.json()['data']:
             code = item['CODE']
-
+            title = item['TITLE_NAME']
             url = f'https://zwfwzx.baoji.gov.cn/icity/icity/proinfo/index?code={code}'
-            urls.append(url)
+            urls.append({"url": url, "title": title})
         return urls
     finally:
         page.quit()

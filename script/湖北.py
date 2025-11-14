@@ -86,7 +86,7 @@ def get_detail(taskCode):
 
     actionCodeList = json.loads(actionCode)
     actionCodeList = [item['actionCode'] for item in actionCodeList]
-    codes = []
+    result = []
     for actionCode in actionCodeList:
         data = {
             'limit': '',
@@ -99,10 +99,11 @@ def get_detail(taskCode):
                   headers=headers, cookies=cookies, data=data, verify=False)
         data = page.response.json()['data']
         data = json.loads(data)['data']
-        code = ['http://zwfw.hubei.gov.cn/webview/bszn/bsznpage.html?transactCode=' + i['TaskCode'] for i in data]
-        codes.extend(code)
-    return codes
-
+        for i in data:
+            title = i['TransactName']
+            url = 'http://zwfw.hubei.gov.cn/webview/bszn/bsznpage.html?transactCode=' + i['TaskCode']
+            result.append({'title': title, 'url': url})
+    return result
 
 
 result = get_list()

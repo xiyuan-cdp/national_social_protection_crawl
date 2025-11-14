@@ -32,11 +32,12 @@ data = {"personZt": "16", "countPerPage": 1000, "currentPageNum": 1, "catalogNam
 
 page = SessionPage()
 page.post('https://www.hnzwfw.gov.cn/hnzwfw/matter/catalogListByParams', headers=headers,
-                         cookies=cookies, data=json.dumps(data))
+          cookies=cookies, data=json.dumps(data))
 data = page.response.json()
 result = []
 for i in data['result']['data']:
     for service in i['serviceList']:
+        title = service['serviceName']
         url = f'https://www.hnzwfw.gov.cn/portal/guide/{service['unid']}'
-        result.append(url)
+        result.append({"url": url, "title": title})
 print(result)

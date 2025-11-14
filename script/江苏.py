@@ -12,7 +12,7 @@ headers = {
 }
 
 
-def get_data(urls: set):
+def get_data(urls):
     response = requests.get('https://www.jszwfw.gov.cn/col/col172800/index.html', headers=headers)
     page = make_session_ele(response.text)
     for tab in page.eles('@mlbm'):
@@ -22,7 +22,7 @@ def get_data(urls: set):
         # print(tab.text)
 
 
-def get_detail(catalog, webId, urls: set):
+def get_detail(catalog, webId, urls: list):
     cookies = {
         'JSESSIONID': '8649B6479FAFD21FE275DAD151E5A75F',
         'jisCUSSESSIONID': '44a1f463-09a2-4638-be99-fcf2c4be40f1',
@@ -58,8 +58,7 @@ def get_detail(catalog, webId, urls: set):
     for son in data['params']['sonArray']:
         webid_ = son['webid']
         temp: list = get_url(catalog, webid_)
-        for item in temp:
-            urls.add(item)
+        urls.extend(temp)
         return get_detail(catalog, webid_, urls)
         # print(webid_)
     # print(data)
@@ -95,11 +94,15 @@ def get_url(catalog, webId):
     page.get('https://www.jszwfw.gov.cn/jszwfw/rmfw/getYwInfo.do', headers=headers, params=params,
              cookies=cookies)
     data = page.response.json()
-    urls = [item for item in data['params']]
+    urls = []
+
+    for key, value in data['params'].items():
+        urls.append({"url": key, "title": value})
+
     # print(urls)
     return urls
 
 
-result = set()
+result = []
 get_data(result)
 print(result)

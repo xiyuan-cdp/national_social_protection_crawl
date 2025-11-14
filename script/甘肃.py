@@ -40,8 +40,9 @@ result = []
 for item in page.eles('办事指南'):
     onclick = item.attr('onclick')
     if onclick:
+        title = item.parent().parent().ele("@onclick").text
         taskCode = re.search("showBanshizhinan\('(.*?)','", onclick).group(1)
         taskHandleItem = re.search("','(.*?)'\)", onclick).group(1)
         url = f'https://zwfw.gansu.gov.cn/szgs/bszn/index.do?taskCode={taskCode}&taskHandleItem={taskHandleItem}'
-        result.append(url)
+        result.append({"url": url, "title": title})
 print(result)

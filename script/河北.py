@@ -1,6 +1,8 @@
 import json
 
 import requests
+
+
 def get_list(pageNum: int):
     cookies = {
         'JSESSIONID': 'D3474B895DC279F0DCE7AB2B715CE562',
@@ -36,8 +38,9 @@ def get_list(pageNum: int):
             continue
         for i in item['itemList']:
             url = "http://www.hbzwfw.gov.cn/hbzw/bszn/info/simple.do?itemId=" + i['itemId']
+            title = i['taskName']
             # print(url)
-            result.append(url)
+            result.append({"url": url, "title": title})
     total = data['pages']['pageSum']
     if pageNum < total:
         get_list(pageNum + 1)

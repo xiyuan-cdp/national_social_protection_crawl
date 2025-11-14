@@ -42,13 +42,15 @@ result = []
 for item in data['data']:
     if item['apasServiceSimpleList']:
         for i in item['apasServiceSimpleList']:
+            title = i['servicename']
             url = f'https://zwfw.fujian.gov.cn/person-todo/todo-fingerpost?unid={i['unid']}&infoType=1'
-            result.append(url)
+            result.append({"url": url, "title": title})
             print(url)
     if item['rspDirectoryApasService']:
         for a in item['rspDirectoryApasService']:
             for i in a['apasServiceSimpleList']:
+                title = i['servicename']
                 url = f'https://zwfw.fujian.gov.cn/person-todo/todo-fingerpost?unid={i['unid']}&infoType=1'
-                result.append(url)
+                result.append({"url": url, "title": title})
                 print(url)
 print(result)

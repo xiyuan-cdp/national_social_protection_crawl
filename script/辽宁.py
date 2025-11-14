@@ -52,8 +52,12 @@ def get_detail(ql_kind, catalogCode):
 
     response = session.get('https://www.lnzwfw.gov.cn/matter/Dept/findByCatalogCode', headers=headers, params=params,
                            cookies=cookies)
-    return ['https://center.lnzwfw.gov.cn/api/web/matter/getContent?id=' + data['item_id'] for data in
-            response.json()['result']]
+    result = []
+    for data in response.json()['result']:
+        title = data['ql_name']
+        url = 'https://center.lnzwfw.gov.cn/api/web/matter/getContent?id=' + data['item_id']
+        result.append({"url": url, "title": title})
+    return result
 
 
 result = get_list()
