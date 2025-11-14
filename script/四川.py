@@ -40,13 +40,15 @@ def get_list():
 
         page.get('https://www.sczwfw.gov.cn/jiq/interface/item/tags', headers=headers, params=params)
         for item in page.eles('办事指南'):
-            url = re.search("ywblurl\('(.*?)'\)",item.attr('onclick')).group(1)
+            title = item.parent().parent().ele(".sx_title").text
+            url = re.search("ywblurl\('(.*?)'\)", item.attr('onclick')).group(1)
             # print(url)
-            urls.append(url)
+            urls.append({"url": url, "title": title})
         # 程序出口，终止死循环条件
         if not page.ele('办事指南'):
             break
     return urls
+
 
 result = get_list()
 print(result)

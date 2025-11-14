@@ -26,25 +26,26 @@ headers = {
 }
 
 data = {
-  'currentPageNo': '1',
-  'pageSize': '100',
-  'ssqdZoneCode': '340000000000',
-  'ztmb': '46',
-  'ssqdTypeCode': '',
-  'ssqdName': '',
-  'isOnline': '',
-  'allOnline': '',
-  'iscsjtb': '',
-  'serviceObject': 'P',
-  'xzqhZj': '0',
-  'isPage': '1'
+    'currentPageNo': '1',
+    'pageSize': '100',
+    'ssqdZoneCode': '340000000000',
+    'ztmb': '46',
+    'ssqdTypeCode': '',
+    'ssqdName': '',
+    'isOnline': '',
+    'allOnline': '',
+    'iscsjtb': '',
+    'serviceObject': 'P',
+    'xzqhZj': '0',
+    'isPage': '1'
 }
 page = SessionPage()
-page.post('https://www.ahzwfw.gov.cn/bog-bsdt/implement/queryImplements.do', headers=headers, cookies=cookies, data=data)
+page.post('https://www.ahzwfw.gov.cn/bog-bsdt/implement/queryImplements.do', headers=headers, cookies=cookies,
+          data=data)
 data = page.response.json()
 result = []
 for item in data['data']['rows']:
     url = f'https://www.ahzwfw.gov.cn/bog-bsdt/static/workProcess/components/applicationMaterial.html?ssqdId={item['id']}&ssqdCode={item['ssqdCode']}&typeSipe=nameSkip'
-    result.append(url)
+    title = item['ssqdName']
+    result.append({"url": url, "title": title})
 print(result)
-

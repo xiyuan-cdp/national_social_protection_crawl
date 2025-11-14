@@ -49,13 +49,13 @@ def get_list():
 
     response = requests.post('https://zwdt.sh.gov.cn/govPortals/person.do', headers=headers, cookies=cookies, data=data)
     data = response.json()
-    urls = []
+    result = []
     for data in data['itemList'].values():
         for item in data:
-            print(item['stId'])
+            title = item['stSubitemName']
             url = get_detail(item['stId'])
-            urls.append(url)
-    return urls
+            result.append({"url": url, "title": title})
+    return result
 
 
 def get_detail(stId):

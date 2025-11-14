@@ -41,6 +41,7 @@ page.get('https://banshi.beijing.gov.cn/guideservice/pubtask/getTaskList', heade
          cookies=cookies)
 data = page.response.json()
 for item in data['data']['list']:
-    url = 'https://banshi.beijing.gov.cn'+item['taskUrl']
-    result.append(url)
+    title = item['taskName']
+    url = 'https://banshi.beijing.gov.cn' + item['taskUrl']
+    result.append({"url": url, "title": title})
 print(result)

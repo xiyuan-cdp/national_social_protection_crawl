@@ -41,12 +41,13 @@ def get_list():
     page.post('https://zwfw.yn.gov.cn/portal/gml/web10011', headers=headers, cookies=cookies, data=json.dumps(data))
     data = page.response.json()['C-Response-Body']
     data = json.loads(data)
-    urls = []
+    result = []
     for item in data['lIST2']:
+        title = item['name']
         id_ = item['id']
         url: list = get_urls(id_)
-        urls.extend(url)
-    return urls
+        result.extend(url)
+    return result
 
 
 def get_urls(id) -> list:
@@ -70,7 +71,7 @@ def get_urls(id) -> list:
     urls = []
     for item in data['lIST2']:
         url = f'https://zwfw.yn.gov.cn/portal/#/work-service/guide-detail?id={item['id']}&matterId={item['matterId']}'
-        urls.append(url)
+        urls.append({"url": url, "title": item['name']})
     # print(urls)
     return urls
 

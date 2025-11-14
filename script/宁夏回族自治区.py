@@ -43,6 +43,7 @@ page.get('https://zwfw.nx.gov.cn/grztsx.jsp', headers=headers, params=params, co
 result = []
 for item in page.eles('办事指南'):
     url = item.link
-    result.append(url)
+    title = item.parent().parent().ele('t:a').attrs['title']
+    result.append({"url": url, "title": title})
     print(url)
 print(result)

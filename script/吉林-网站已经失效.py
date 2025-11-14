@@ -4,7 +4,7 @@ from DrissionPage._base.chromium import Chromium
 from DrissionPage._configs.chromium_options import ChromiumOptions
 
 chromium_options = ChromiumOptions()
-chromium_options.set_local_port(9221).headless()
+chromium_options.set_local_port(9221)
 page = Chromium(addr_or_opts=chromium_options)
 tab = page.new_tab()
 tab.get("https://zwfw.jl.gov.cn/jlszwfw/")

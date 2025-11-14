@@ -1,4 +1,5 @@
 import requests
+from DrissionPage._elements.session_element import make_session_ele
 from DrissionPage._pages.session_page import SessionPage
 
 cookies = {
@@ -19,12 +20,14 @@ headers = {
     'Upgrade-Insecure-Requests': '1',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0',
 }
-page = SessionPage()
-page.get('http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/gr_index', headers=headers,
-         cookies=cookies, verify=False)
+
+response = requests.get('http://www.shandong.gov.cn/api-gateway/jpaas-jiq-web-sdywtb/front/item/gr_index', headers=headers,
+                   cookies=cookies, verify=False)
 result = []
+page = make_session_ele(response.text)
 for tab in page.ele('.grfw_detail grfw_detail1').eles('t:a'):
     url = tab.link
     if url:
-        result.append(url)
+        title = tab.raw_text
+        result.append({"url": url, "title": title})
 print(result)

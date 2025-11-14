@@ -27,11 +27,13 @@ params = (
     ('user_topic_type', '085'),
 )
 
-response = requests.get('https://zwfw.tj.gov.cn/Gov/hall/task/page-user-task-list', headers=headers, params=params, cookies=cookies)
+response = requests.get('https://zwfw.tj.gov.cn/Gov/hall/task/page-user-task-list', headers=headers, params=params,
+                        cookies=cookies)
 data = response.json()
 result = []
 for item in data['result']:
     for i in item['list']:
+        title = i['zhuxiang']
         url = f'https://zwfw.tj.gov.cn/#/operatingInstruction?taskCode={i['itemId']}'
-        result.append(url)
+        result.append({"url": url, "title": title})
 print(result)

@@ -39,9 +39,10 @@ for label in data['data']['labelList']:
             print(child['labelName'])
             for item in child['relatedItemList']:
                 # print(item)
+                title = item['itemName']
                 url = f'https://zwfw.xinjiang.gov.cn/jiopweb/guideSimple?itemId={item["iid"]}&bannerType=personal&areaCode={item['districtId']}'
                 # print(url)
-                result.append(url)
+                result.append({"url": url, "title": title})
 print(result)
 
 # print(data)

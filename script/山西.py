@@ -52,11 +52,13 @@ def get_data():
     data = json.loads(response.text)
     for item in data['data']:
         for i in item['taskList']:
+            title = i['taskHandleItemName']
             url = "https://ty.sxzwfw.gov.cn/icity/icity/proinfo_new?url=https://zwfwpt.sxzwfw.gov.cn:10002/aaa/person/" + \
                   i['rowGuid']
-            urls.append(url)
+            urls.append({"url": url, "title": title})
     # print(data)
     return urls
+
 
 result = get_data()
 print(result)

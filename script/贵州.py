@@ -51,12 +51,12 @@ result = []
 for item in data['data']['Data']:
     if 'QltList' in item and item['QltList']:
         for i in item['QltList']:
-            url = f'https://zwfw.guizhou.gov.cn/bsznindex.do?otheritemcode={i['ITEM_CODE']}&orgcode={i['Org_code']}&areacode={i['Region_code']}'
-            result.append(url)
+            url = f"https://zwfw.guizhou.gov.cn/bsznindex.do?otheritemcode={i['ITEM_CODE']}&orgcode={i['Org_code']}&areacode={i['Region_code']}"
+            result.append({"url": url, "title": i['NAME']})
     if 'ChiltList' in item and item['ChiltList']:
         for j in item['ChiltList']:
             for i in j['QltList']:
-                url = f'https://zwfw.guizhou.gov.cn/bsznindex.do?otheritemcode={i['ITEM_CODE']}&orgcode={i['Org_code']}&areacode={i['Region_code']}'
-                result.append(url)
+                url = f"https://zwfw.guizhou.gov.cn/bsznindex.do?otheritemcode={i['ITEM_CODE']}&orgcode={i['Org_code']}&areacode={i['Region_code']}"
+                result.append({"url": url, "title": i['NAME']})
 
 print(result)
