@@ -1,7 +1,4 @@
 import json
-from time import sleep
-import random
-import string
 
 import tls_client
 from DrissionPage._base.chromium import Chromium
@@ -13,7 +10,7 @@ def get_data() -> list:
     chromium_options.set_local_port(9221).headless()
     page = Chromium(addr_or_opts=chromium_options)
     tab = page.new_tab()
-    tab.get("https://zwfwzx.baoji.gov.cn/icity/icity/project/index?type=person")
+    tab.get("https://zwfwzx.baoji.gov.cn/icity/icity/proinfo/indexSimple?code=288e16054904adff94a22ae281b6455d")
     try:
         import requests
 
@@ -81,7 +78,7 @@ def get_data() -> list:
         urls = []
         for item in response.json()['data']:
             code = item['CODE']
-            title = item['TITLE_NAME']
+            title = item['NAME']
             url = f'https://zwfwzx.baoji.gov.cn/icity/icity/proinfo/index?code={code}'
             urls.append({"url": url, "title": title})
         return urls

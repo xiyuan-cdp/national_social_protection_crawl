@@ -101,7 +101,7 @@ def get_detail(taskCode):
         data = json.loads(data)['data']
         for i in data:
             title = i['TransactName']
-            url = 'http://zwfw.hubei.gov.cn/webview/bszn/bsznpage.html?transactCode=' + i['TaskCode']
+            url = 'http://zwfw.hubei.gov.cn/webview/bszn/bsznpage.html?transactCode=' + i['TransactCode']
             result.append({'title': title, 'url': url})
     return result
 
