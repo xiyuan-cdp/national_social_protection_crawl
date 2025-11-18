@@ -51,12 +51,12 @@ for data in datas['itemJsonDataList']:
             if sub_data['ItemList']:
                 for item in sub_data['ItemList']:
                     title = item['ItemName']
-                    url = f'https://zwfw.nmg.gov.cn/handle_affairs_detail_simple?item_detail_id={item['ItemID']}&regionCode=150000&record=istrue'
+                    url = f"https://zwfw.nmg.gov.cn/handle_affairs_detail_simple?item_detail_id={item['ItemID']}&regionCode=150000&record=istrue"
                     result.append({"url": url, "title": title})
     if data['ItemList']:
         for item in data['ItemList']:
             title = item['ItemName']
-            url = f'https://zwfw.nmg.gov.cn/handle_affairs_detail_simple?item_detail_id={item['ItemID']}&regionCode=150000&record=istrue'
+            url = f"https://zwfw.nmg.gov.cn/handle_affairs_detail_simple?item_detail_id={item['ItemID']}&regionCode=150000&record=istrue"
             result.append({"url": url, "title": title})
 
 print(len(result))

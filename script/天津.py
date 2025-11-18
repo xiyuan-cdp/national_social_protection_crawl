@@ -34,6 +34,6 @@ result = []
 for item in data['result']:
     for i in item['list']:
         title = i['zhuxiang']
-        url = f'https://zwfw.tj.gov.cn/#/operatingInstruction?taskCode={i['itemId']}'
+        url = f'https://zwfw.tj.gov.cn/#/operatingInstruction?taskCode={i["itemId"]}'
         result.append({"url": url, "title": title})
 print(result)

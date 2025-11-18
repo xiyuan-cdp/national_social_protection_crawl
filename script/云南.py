@@ -70,7 +70,7 @@ def get_urls(id) -> list:
     data = json.loads(data)
     urls = []
     for item in data['lIST2']:
-        url = f'https://zwfw.yn.gov.cn/portal/#/work-service/guide-detail?id={item['id']}&matterId={item['matterId']}'
+        url = f"https://zwfw.yn.gov.cn/portal/#/work-service/guide-detail?id={item['id']}&matterId={item['matterId']}"
         urls.append({"url": url, "title": item['name']})
     # print(urls)
     return urls
