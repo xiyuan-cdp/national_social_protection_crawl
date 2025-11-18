@@ -1,6 +1,5 @@
 import json
 
-import requests
 from DrissionPage._pages.session_page import SessionPage
 
 cookies = {
@@ -38,6 +37,6 @@ result = []
 for i in data['result']['data']:
     for service in i['serviceList']:
         title = service['serviceName']
-        url = f'https://www.hnzwfw.gov.cn/portal/guide/{service['unid']}'
+        url = f'https://www.hnzwfw.gov.cn/portal/guide/{service["unid"]}'
         result.append({"url": url, "title": title})
 print(result)
