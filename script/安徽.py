@@ -45,7 +45,7 @@ page.post('https://www.ahzwfw.gov.cn/bog-bsdt/implement/queryImplements.do', hea
 data = page.response.json()
 result = []
 for item in data['data']['rows']:
-    url = f'https://www.ahzwfw.gov.cn/bog-bsdt/static/workProcess/components/applicationMaterial.html?ssqdId={item['id']}&ssqdCode={item['ssqdCode']}&typeSipe=nameSkip'
+    url = f"https://www.ahzwfw.gov.cn/bog-bsdt/static/workProcess/components/applicationMaterial.html?ssqdId={item['id']}&ssqdCode={item['ssqdCode']}&typeSipe=nameSkip"
     title = item['ssqdName']
     result.append({"url": url, "title": title})
 print(result)
