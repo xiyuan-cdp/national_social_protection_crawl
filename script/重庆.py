@@ -1,11 +1,9 @@
-import requests
-import json
 import tls_client
 
 url = "https://cqykb.cq.gov.cn/pc/xindian/handle/getItemList"
 params = (
-    ('pageNum', '2'),
-    ('pageSize', '10'),
+    ('pageNum', '1'),
+    ('pageSize', '1000'),
     ('areaCode', '500000'),
     ('serviceObject', '1'),
     ('firstLevelCategoryId', '1'),

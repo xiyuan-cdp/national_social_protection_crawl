@@ -12,8 +12,8 @@ def get_query_data(currentpage: int):
                     usertype : "20",
                     currentpage : {currentpage},
                     pagesize : 15,
-                    ouguid : "",
-                    dictid : "5787f3ee-5272-4307-93b2-57c69fd5bb36",
+                    ouguid : "7c08b4d2-90e6-45e0-86c1-4efea9f3fa22",
+                    dictid : "",
                     areacode : "540101"
                 }
             }));
@@ -70,11 +70,11 @@ def get_data() -> list:
             break
         for task in data['custom']['tasklist']:
             taskcode = task['taskguid']
+            title = task['taskname']
             url = f'https://smfw.lasa.gov.cn/lszwdt/epointzwmhwz/pages/eventdetail/personaleventdetail?taskguid={taskcode}'
-            urls.append(url)
+            urls.append({"url": url, "title": title})
             print(url)
     return urls
-
 
 
 chromium_options = ChromiumOptions()

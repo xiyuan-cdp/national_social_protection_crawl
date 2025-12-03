@@ -30,7 +30,8 @@ def get_data():
     data = {
         "page": 1,
         "limit": 10000,
-        "type": "all",
+        "orgCode": "11140100012187095J",
+        "type": "allBM",
         "title": "",
         "serviceObject": "1",
         "name": "",
