@@ -53,13 +53,23 @@ def get_list() -> list:
         for item in json['data']['itemTreeNode']:
             if item['children']:
                 for child in item['children']:
-                    obj_ = child['obj']
-                    if obj_['isExternalLink'] == 0:
-                        url = f'https://zwfw.gxzf.gov.cn/eportal/ui?pageId=d0349fe94d1c4d139b006db643fb9e52&itemDetailId={obj_["id"]}'
-                        result.append({"url": url, "title": obj_['itemName']})
-                    if obj_['isExternalLink'] == 1:
-                        url = obj_['externalLinkUrl']
-                        result.append({"url": url, "title": obj_['itemName']})
+                    if child['children']:
+                        for sub_child in child['children']:
+                            obj_ = sub_child['obj']
+                            if obj_['isExternalLink'] == 0:
+                                url = f'https://zwfw.gxzf.gov.cn/eportal/ui?pageId=d0349fe94d1c4d139b006db643fb9e52&itemDetailId={obj_["id"]}'
+                                result.append({"url": url, "title": obj_['itemName']})
+                            if obj_['isExternalLink'] == 1:
+                                url = obj_['externalLinkUrl']
+                                result.append({"url": url, "title": obj_['itemName']})
+                    else:
+                        obj_ = child['obj']
+                        if obj_['isExternalLink'] == 0:
+                            url = f'https://zwfw.gxzf.gov.cn/eportal/ui?pageId=d0349fe94d1c4d139b006db643fb9e52&itemDetailId={obj_["id"]}'
+                            result.append({"url": url, "title": obj_['itemName']})
+                        if obj_['isExternalLink'] == 1:
+                            url = obj_['externalLinkUrl']
+                            result.append({"url": url, "title": obj_['itemName']})
             else:
                 obj_ = item['obj']
                 if obj_['isExternalLink'] == 0:
@@ -75,3 +85,4 @@ def get_list() -> list:
 
 result = get_list()
 print(result)
+print(len(result))

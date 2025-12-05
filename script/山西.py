@@ -54,7 +54,7 @@ def get_data():
     for item in data['data']:
         for i in item['taskList']:
             title = i['taskHandleItemName']
-            url = "https://ty.sxzwfw.gov.cn/icity/icity/proinfo_new?url=https://zwfwpt.sxzwfw.gov.cn:10002/aaa/person/" + \
+            url = "https://zwfwpt.sxzwfw.gov.cn:10002/#/person/" + \
                   i['rowGuid']
             urls.append({"url": url, "title": title})
     # print(data)

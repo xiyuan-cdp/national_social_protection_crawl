@@ -46,8 +46,8 @@ def get_data(pageNo):
         result.append({'url': url, 'title': title})
 
 
-if __name__ == '__main__':
-    result = []
-    for pageNo in range(1, 9):
-        get_data(pageNo)
-    print(result)
+
+result = []
+for pageNo in range(1, 9):
+    get_data(pageNo)
+print(result)
